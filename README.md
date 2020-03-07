@@ -1,6 +1,6 @@
 *Twitter for ...  
 This simple program lets you tweet via a custom "Twitter for" field  
-This script uses tweetpy module  
+This script uses tweepy module  
 
 **Instructions:
 First you need to create [Developer Account](https://developer.twitter.com) on Twitter  
@@ -9,6 +9,6 @@ After sign up, create the new Application
 After creating an application, go to Tokens tab and copy every token from there, now copy this repo and follow next steps:  
   
 Open `tokenconfig.py.template` and fill out all the fields with your application tokens (do not rename this file!)  
-Now open terminal and install tweetpy module: `pip install tweetpy`  
+Now open terminal and install tweepy module: `pip install tweepy`  
 Run the program via `twitterfor.py`  
-After you fill ut everything there, congrats, you have succesfully tweeted via Gucci Smart Toilet.  
+After you fill out everything there, congrats, you have succesfully tweeted via Gucci Smart Toilet.  
