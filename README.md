@@ -12,7 +12,7 @@ Open `tokenconfig.py.template` and fill out all the fields with your application
 Now open terminal and install tweepy module: `pip install tweepy`  
 Run the program via `twitterfor.py`  
 
-![Screenshot](https://github.com/X1nto/twitter-for-x/blob/master/Screenshot.png)
+![Screenshot](https://github.com/X1nto/twitter-for-x/blob/master/Screenshot.png)  
 Now you'll see this menu, choose any option you want and fill out everything  
 
 ##### Second option isn't working as of now but it will be fixed soon  
