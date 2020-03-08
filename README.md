@@ -5,7 +5,7 @@ This script uses tweepy module
 ## Instructions:
 First you need to create [Developer Account](https://developer.twitter.com) on Twitter  
 After sign up, create the new Application
-##### Note: Your application name will be important, as it will be used in "Twitter for [application name]", if you change it later, this field will still use old name, be careful when choosing a name  
+##### Note: Your application name will be important, as it will be replacing "Twitter for (Android/iPhone/Web Client)" fields. If you want a custom "Twitter For" field, name it "Twitter for <your choice>". If you change name later, this field will still use old name. Be careful when choosing a name  
 After creating an application, go to Tokens tab and copy every token from there, now clone this repo and follow next steps:  
   
 Open `tokenconfig.py.template` and fill out all the fields with your application tokens (do not rename this file!)  
