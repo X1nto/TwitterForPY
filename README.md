@@ -11,4 +11,11 @@ After creating an application, go to Tokens tab and copy every token from there,
 Open `tokenconfig.py.template` and fill out all the fields with your application tokens (do not rename this file!)  
 Now open terminal and install tweepy module: `pip install tweepy`  
 Run the program via `twitterfor.py`  
+
+![Screenshot](https://imgur.com/a/F2f5aWI)
+
+Now you'll see this menu, choose any option you want and fill out everything  
+
+##### Second option isn't working as of now but it will be fixed soon  
+
 After you fill out everything there, congrats, you have succesfully tweeted via Gucci Smart Toilet.  

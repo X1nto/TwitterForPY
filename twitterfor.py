@@ -27,7 +27,7 @@ if config.is_file():
     print (logo)
 
     while True:
-        choose = input("1)Tweet\n2)Upload media\n3)Reply to a Tweet\n4)Retweet\n\n[Your Choice]:")
+        choose = input("1)Tweet\n2)Upload media (Not Working)\n3)Reply to a Tweet\n4)Retweet\n\n[Your Choice]:")
         if choose in ['1', '2', '3', '4']:
             break
 
