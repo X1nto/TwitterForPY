@@ -32,9 +32,10 @@ if config.is_file():
             break
         
     if choose == '1':
+        s = ""
         tweets = api.home_timeline(count = '20')
         for status in tweets:
-            print ('\n' + status.user.name + ":", status.text, status.id)
+            print ('-----------------\n@' + status.user.name + ' (' + str(status.user.id) + ')' + "\n-----------------\n" + status.text, '\n\n' + 'Tweet ID(' + str(status.id) + ')')
         
     elif choose == '2':
         tweet = input("Make a tweet: ")
