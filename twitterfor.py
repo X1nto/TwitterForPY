@@ -136,12 +136,12 @@ if config.is_file():
             
         elif choose == '6':
             def dmlist():
-                dmlist = api.list_direct_messages()
-                print (dmlist)
+                listdm = api.list_direct_messages()
+                print (listdm)
                 
                 while True:
                     choose6 = input("\n1)Refresh\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
-                    if choose1 in ['1', '2', 'q']:
+                    if choose6 in ['1', '2', 'q']:
                         break
                 if choose6 == '1':
                     dmlist()
@@ -166,18 +166,16 @@ if config.is_file():
                     elif choose7 == '2':
                         def refresh():
                             refresh = api.get_direct_message(id =(dmid), full_text = true)
-                            print (refresh)
+                            print (refresh.event.message_create.message_text)
                             
                             while True:
                                 choose8 = input("\n1)refresh this Dm\n\nq)Quit\n\n[Your Choice]:")
-                                if choose1 in ['1', 'q']:
+                                if choose8 in ['1', 'q']:
                                     break
                             if choose8 == '1':
                                 refresh()
                             elif choose8 == 'q':
                                 print ("Goodbye!")
-                                
-                        tweet()
                         refresh()
                     elif choose7 == '3':
                         senddm()
@@ -203,4 +201,4 @@ else:
         file.write("\nAccessToken: " + "'" + acctok + "'")
         accsectok = input("Please enter your Access Secret Token: ")
         file.write("\nAccessSecretToken: " + "'" + accsectok + "'")
-        
+        os.execl(sys.executable, sys.executable, *sys.argv)
