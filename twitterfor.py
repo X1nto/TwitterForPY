@@ -92,9 +92,11 @@ if config.is_file():
 
         elif choose == '4':
             def reply():
-                inreplyto = input("What status is this replying to? (Use an ID of tweet): ")
+                ogauthor = input("Who are you replying to? (Use their @name): ")
                 replytxt = input("Make a reply: ")
-                api.update_status(status =(replytxt), in_reply_to_status_id =(inreplyto))
+                inreplyto = input("What status is this replying to? (Use an ID of tweet): ")
+                toreply = ogauthor + " " + replytxt
+                api.update_status(status =(toreply), in_reply_to_status_id =(inreplyto))
                 print ("Succesfully replied!")
                 while True:
                     choose4 = input("\n1)Reply to another post\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
@@ -163,7 +165,7 @@ if config.is_file():
                         send()
                     elif choose7 == '2':
                         def refresh():
-                            refresh = api.get_direct_message(id =(dmid))
+                            refresh = api.get_direct_message(id =(dmid), full_text = true)
                             print (refresh)
                             
                             while True:
