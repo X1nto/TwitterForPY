@@ -1,4 +1,0 @@
-ConsumerAPI = {'api_key': '<your-api-key>',
-               'api_secret_key': '<your-api-secret-key>'}
-AccessToken = {'access_token': '<your-access-token>',
-              'access_token_secret': '<your-access-token-secret>'}
