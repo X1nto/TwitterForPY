@@ -38,7 +38,7 @@ if config.is_file():
             def timeline():
                 tweets = api.home_timeline(count = '20')
                 for status in tweets:
-                    print ('-----------------\n@' + status.user.name + ' (' + str(status.user.id) + ')' + "\n-----------------\n" + status.text, '\n\n' + 'Tweet ID(' + str(status.id) + ')')
+                    print ('-----------------\n@' + status.user.screen_name + ' (' + status.user.name + ')' + ' [' + status.user.id_str + ']' + "\n-----------------\n" + status.text, '\n\n' + 'Tweet ID(' + str(status.id) + ')')
                 while True:
                     choose1 = input("\n1)Re-fetch timeline\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
                     if choose1 in ['1', '2', 'q']:
