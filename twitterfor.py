@@ -60,7 +60,7 @@ if config.is_file():
                 
                 while True:
                     choose2 = input("\n1)Make another tweet\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
-                    if choose1 in ['1', '2', 'q']:
+                    if choose2 in ['1', '2', 'q']:
                         break
                 if choose2 == '1':
                     tweet()
