@@ -10,8 +10,8 @@ After creating an application, go to Tokens tab and copy every token from there,
 
 open terminal and install tweepy module: `pip install tweepy`  
 Run the program via `twitterfor.py`  
-Program will ask you to provide tokens, do what it says__
-After you provided tokens, it will self restart__
+Program will ask you to provide tokens, do what it says  
+After you provided tokens, it will self restart  
 
 ![Screenshot](https://github.com/X1nto/twitter-for-x/blob/master/Screenshot.png)  
 Now you'll see this menu, choose any option you want and fill out everything  
