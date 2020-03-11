@@ -30,7 +30,7 @@ if config.is_file():
         user = api.me()
         print ("Logged in as: @" + user.screen_name)
         while True:
-            choose = input("\n1)Fetch your timeline\n2)Tweet\n3)Upload media (Not Working)\n4)Reply to a Tweet\n5)Retweet\n6)List DM\n7)Send DM\n\nq)Quit\n\n[Your Choice]:")
+            choose = input("\n1)Fetch your timeline\n2)Tweet\n3)Tweet with media\n4)Reply to a Tweet\n5)Retweet\n6)List DM\n7)Send DM\n\nq)Quit\n\n[Your Choice]:")
             if choose in ['1', '2', '3', '4', '5', '6', '7', 'q']:
                 break
             
@@ -73,13 +73,15 @@ if config.is_file():
             
         elif choose == '3':
             def mediupload():
-                media = input("Please specify a file: ")
-                api.media_upload(filename =(media))
+                tweet = input("Your status: ")
+                media = input("Your file path: ")
+                mediaupload = api.media_upload(media)
+                api.update_status(status =(tweet), media_ids=[mediaupload.media_id_string])
                 print ("Succesfully Tweeted!")
                 
                 while True:
                     choose3 = input("\n1)Upload another media\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
-                    if choose1 in ['1', '2', 'q']:
+                    if choose3 in ['1', '2', 'q']:
                         break
                 if choose3 == '1':
                     mediupload()
@@ -136,9 +138,8 @@ if config.is_file():
             
         elif choose == '6':
             def dmlist():
-                listdm = api.list_direct_messages()
-                print (listdm)
-                
+                msg = api.list_direct_messages(count = '10')
+                print(msg.message_text)
                 while True:
                     choose6 = input("\n1)Refresh\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
                     if choose6 in ['1', '2', 'q']:
@@ -149,7 +150,6 @@ if config.is_file():
                     mainmenu()
                 elif choose6 == 'q':
                     print ("Goodbye!")
-                    
             dmlist()
         elif choose == '7':
             def senddm():
