@@ -1,5 +1,5 @@
 #!/usr/bin/python3.8
-import tweepy, os, sys, time, datetime, timedelta
+import tweepy, os, sys, time, datetime
 from pathlib import Path
 
 logo = """
