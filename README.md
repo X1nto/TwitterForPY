@@ -18,6 +18,5 @@ Now you'll see this menu, choose any option you want and fill out everything
 After you fill out everything there, congrats, you have succesfully tweeted via Gucci Smart Toilet.  
 
 ## Notes:
-Second option isn't working as of now but it will be fixed soon  
 Listing and sending DMs require special permissions. On app console, go to permissions tab, click edit and select 3rd option and click save. for this change to take effect you need to regenerate all tokens. If you're already logged in to this app, you need to edit config.py and overwrite tokes there.  
 Listing DMs will output raw JSON strings and I have no idea how to fix it, if you know anything Pull Request would be highly appreciated.
