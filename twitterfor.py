@@ -1,14 +1,14 @@
 #!/usr/bin/python3.8
-import tweepy, os, sys, time
+import tweepy, os, sys, time, datetime, timedelta
 from pathlib import Path
 
 logo = """
-████████╗ ██╗       ██╗██╗████████╗████████╗███████╗██████╗   ███████╗ █████╗ ██████╗            
-╚══██╔══╝ ██║  ██╗  ██║██║╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗  ██╔════╝██╔══██╗██╔══██╗           
-   ██║    ╚██╗████╗██╔╝██║   ██║      ██║   █████╗  ██████╔╝  █████╗  ██║  ██║██████╔╝           
-   ██║     ████╔═████║ ██║   ██║      ██║   ██╔══╝  ██╔══██╗  ██╔══╝  ██║  ██║██╔══██╗           
-   ██║     ╚██╔╝ ╚██╔╝ ██║   ██║      ██║   ███████╗██║  ██║  ██║     ╚█████╔╝██║  ██║  ██╗██╗██╗
-   ╚═╝      ╚═╝   ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝  ╚═╝      ╚════╝ ╚═╝  ╚═╝  ╚═╝╚═╝╚═╝
+████████╗ ██╗       ██╗██╗████████╗████████╗███████╗██████╗   ███████╗ █████╗ ██████╗   ██████╗ ██╗   ██╗
+╚══██╔══╝ ██║  ██╗  ██║██║╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗  ██╔════╝██╔══██╗██╔══██╗  ██╔══██╗╚██╗ ██╔╝
+   ██║    ╚██╗████╗██╔╝██║   ██║      ██║   █████╗  ██████╔╝  █████╗  ██║  ██║██████╔╝  ██████╔╝ ╚████╔╝ 
+   ██║     ████╔═████║ ██║   ██║      ██║   ██╔══╝  ██╔══██╗  ██╔══╝  ██║  ██║██╔══██╗  ██╔═══╝   ╚██╔╝  
+   ██║     ╚██╔╝ ╚██╔╝ ██║   ██║      ██║   ███████╗██║  ██║  ██║     ╚█████╔╝██║  ██║  ██║        ██║   
+   ╚═╝      ╚═╝   ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝  ╚═╝      ╚════╝ ╚═╝  ╚═╝  ╚═╝        ╚═╝   
 """
 
 print ("Checking config file...")
@@ -30,22 +30,26 @@ if config.is_file():
         user = api.me()
         print ("Logged in as: @" + user.screen_name)
         while True:
-            choose = input("\n1)Fetch your timeline\n2)Tweet\n3)Tweet with media\n4)Reply to a Tweet\n5)Retweet\n6)List DM\n7)Send DM\n\nq)Quit\n\n[Your Choice]:")
-            if choose in ['1', '2', '3', '4', '5', '6', '7', 'q']:
+            choose = input("\n1)Fetch your timeline\n2)Tweet\n3)Tweet with media\n4)Reply to a Tweet\n5)Retweet\n6)List DM (Not working)\n7)Send DM\n\nq)Quit\n\n[Your Choice]:")
+            if choose in ['1', '2', '3', '4', '5', '6', '7', '8', 'q']:
                 break
             
         if choose == '1':
             def timeline():
-                tweets = api.home_timeline(count = '20')
-                for status in tweets:
-                    print ('-----------------\n@' + status.user.screen_name + ' (' + status.user.name + ')' + ' [' + status.user.id_str + ']' + "\n-----------------\n" + status.text, '\n\n' + 'Tweet ID(' + str(status.id) + ')')
+                tweets = api.home_timeline(count = '40', tweet_mode="extended")
+                for status in reversed(tweets):
+                    print ('~~~~~~~~~~~~~~~~\n@' + status.user.screen_name + ' (' + status.user.name + ')' + ' [' + status.user.id_str + ']' + "\n-----------------\n" + status.full_text, '\n\n' + str(status.created_at), '\nTweet ID(' + str(status.id) + ')\n~~~~~~~~~~~~~~~~\n')
                 while True:
-                    choose1 = input("\n1)Re-fetch timeline\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
-                    if choose1 in ['1', '2', 'q']:
+                    choose1 = input("\n1)Re-fetch timeline\n2)Retweet a tweet\n3)Reply to a tweet\n4)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
+                    if choose1 in ['1', '2', '3', '4', 'q']:
                         break
                 if choose1 == '1':
                     timeline()
                 elif choose1 == '2':
+                    retweet()
+                elif choose1 == '3':
+                    reply()
+                elif choose1 == '4':
                     mainmenu()
                 elif choose1== 'q':
                     print ("Goodbye!")
@@ -114,8 +118,8 @@ if config.is_file():
             reply()
             
         elif choose == '5':
-            retweetid = input("Provide an ID of tweet that you wish to retweet: ")
             def retweet():
+                retweetid = input("Provide an ID of tweet that you wish to retweet: ")
                 api.retweet(id =(retweetid))
                 print ("Succesfully retweeted!")
                 
@@ -126,7 +130,7 @@ if config.is_file():
                 if choose5 == '1':
                     retweet()
                 elif choose5 == '2':
-                    api.unretweet(id =(retweetid))
+                    api.unretweet(retweetid)
                     print ("Succesfully unretweeted!")
                     mainmenu()
                 elif choose5 == '3':
@@ -138,8 +142,8 @@ if config.is_file():
             
         elif choose == '6':
             def dmlist():
-                msg = api.list_direct_messages(count = '10')
-                print(msg.message_text)
+                dm  = api.list_direct_messages()
+                print (dm.list)
                 while True:
                     choose6 = input("\n1)Refresh\n2)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
                     if choose6 in ['1', '2', 'q']:
@@ -158,7 +162,7 @@ if config.is_file():
                     dmtext = input("Text: ")
                     api.send_direct_message(recipient_id =(dmid), text =(dmtext))
                     while True:
-                        choose7 = input("\n1)Send another DM to this person\n2)Refresh this DM\n3)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
+                        choose7 = input("\n1)Send another DM to this person\n2)Fetch this DM (not working)\n3)Return to main menu\n\nq)Quit\n\n[Your Choice]:")
                         if choose7 in ['1', '2', '3', 'q']:
                             break
                     if choose7 == '1':
@@ -166,8 +170,7 @@ if config.is_file():
                     elif choose7 == '2':
                         def refresh():
                             refresh = api.get_direct_message(id =(dmid), full_text = true)
-                            print (refresh.event.message_create.message_text)
-                            
+                            print (refresh)
                             while True:
                                 choose8 = input("\n1)refresh this Dm\n\nq)Quit\n\n[Your Choice]:")
                                 if choose8 in ['1', 'q']:
@@ -185,10 +188,8 @@ if config.is_file():
                         print ("Goodbye!")
                 send()
             senddm()
-            
         elif choose == 'q':
             print ("Goodbye!")
-            
     mainmenu()
 else:
     print ("Config not found! Creating config...")
@@ -201,4 +202,4 @@ else:
         file.write("\nAccessToken: " + "'" + acctok + "'")
         accsectok = input("Please enter your Access Secret Token: ")
         file.write("\nAccessSecretToken: " + "'" + accsectok + "'")
-        os.execl(sys.executable, sys.executable, *sys.argv)
+    os.execl(sys.executable, sys.executable, *sys.argv)

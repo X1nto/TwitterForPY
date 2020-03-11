@@ -1,5 +1,5 @@
-# Twitter for ...  
-This simple program lets you tweet via a custom "Twitter for" field  
+# Twitter for Python  
+This simple program lets you tweet via a Python script and gives you ability to set custom "Twitter for" field  
 This script uses tweepy module  
 
 ## Instructions:
